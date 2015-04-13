@@ -1,5 +1,3 @@
-package android.tableapp.com.tableappmerchantapp.networkUtility;
-
 import java.io.IOException;
 
 /**

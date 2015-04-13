@@ -1,5 +1,3 @@
-package android.tableapp.com.tableappmerchantapp.networkUtility;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.MediaType;

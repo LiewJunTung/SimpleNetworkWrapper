@@ -1,4 +1,3 @@
-package android.tableapp.com.tableappmerchantapp.networkUtility;
 
 /**
  * Created by jtliew on 4/13/15.
