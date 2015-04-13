@@ -1,3 +1,5 @@
+package org.jt.http_wrapper;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.MediaType;
@@ -18,11 +20,35 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     private final ObjectMapper mapper = new ObjectMapper();
     public static final MediaType MEDIA_TYPE_JSON
             = MediaType.parse("application/json; charset=utf-8");
+    public static final String DEFAULT_TAG = "DEFAULT";
+
+
+    @Override
+    public <T> void getData(String url, String tag, final Class<T> responseClass, final ApiCallback callback) {
+
+        Request request = new Request.Builder()
+                .url(url)
+                .tag(tag)
+                .build();
+        doNetworkCall(client, request, responseClass, callback);
+    }
 
     @Override
     public <T> void getData(String url, final Class<T> responseClass, final ApiCallback callback) {
         Request request = new Request.Builder()
                 .url(url)
+                .tag(DEFAULT_TAG)
+                .build();
+        doNetworkCall(client, request, responseClass, callback);
+    }
+
+    @Override
+    public <T> void postData(String url, String tag, T postData, Class<T> responseClass, ApiCallback callback) throws IOException {
+        String jsonRequest = mapper.writeValueAsString(postData);
+        Request request = new Request.Builder()
+                .url(url)
+                .tag(tag)
+                .post(RequestBody.create(MEDIA_TYPE_JSON, jsonRequest))
                 .build();
         doNetworkCall(client, request, responseClass, callback);
     }
@@ -32,6 +58,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
         String jsonRequest = mapper.writeValueAsString(postData);
         Request request = new Request.Builder()
                 .url(url)
+                .tag(DEFAULT_TAG)
                 .post(RequestBody.create(MEDIA_TYPE_JSON, jsonRequest))
                 .build();
         doNetworkCall(client, request, responseClass, callback);
@@ -56,5 +83,13 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
                 callback.onSuccess(result);
             }
         });
+    }
+
+    public void stopRequest(){
+        client.cancel(DEFAULT_TAG);
+    }
+
+    public void stopRequest(String tag){
+        client.cancel(tag);
     }
 }
