@@ -43,7 +43,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     }
 
     @Override
-    public <T> void postData(String url, String tag, T postData, Class<T> responseClass, ApiCallback callback) throws IOException {
+    public <T> void postData(String url, String tag, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException {
         String jsonRequest = mapper.writeValueAsString(postData);
         Request request = new Request.Builder()
                 .url(url)
@@ -54,7 +54,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     }
 
     @Override
-    public <T> void postData(String url, T postData, Class<T> responseClass, ApiCallback callback) throws IOException {
+    public <T> void postData(String url, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException {
         String jsonRequest = mapper.writeValueAsString(postData);
         Request request = new Request.Builder()
                 .url(url)
@@ -78,8 +78,8 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
             @Override
             public void onResponse(Response response) throws IOException {
                 String res = response.body().string();
+                System.out.println("onResponseCallback" + res);
                 T result = mapper.readValue(res, responseClass);
-                System.out.println(result.toString());
                 callback.onSuccess(result);
             }
         });

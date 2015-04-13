@@ -10,7 +10,7 @@ public interface NetworkCallApiInterface {
 
     <T> void getData(String url, Class<T> responseClass, ApiCallback callback);
 
-    <T> void postData(String url, String tag, T postData, Class<T> responseClass, ApiCallback callback) throws IOException;
+    <T> void postData(String url, String tag, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException;
 
-    <T> void postData(String url, T postData, Class<T> responseClass, ApiCallback callback) throws IOException;
+    <T> void postData(String url, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException;
 }
