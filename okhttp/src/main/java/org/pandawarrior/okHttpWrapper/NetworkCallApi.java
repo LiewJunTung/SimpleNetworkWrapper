@@ -1,6 +1,8 @@
 package main.java.org.pandawarrior.okHttpWrapper;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -9,6 +11,9 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 /**
  * Created by jtliew on 4/13/15.
@@ -77,9 +82,12 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
 
             @Override
             public void onResponse(Response response) throws IOException {
-                String res = response.body().string();
-                System.out.println("onResponseCallback" + res);
-                T result = mapper.readValue(res, responseClass);
+                //String res = response.body().string();
+                byte[] res = response.body().bytes();
+                //System.out.println("onResponseCallback" + res);
+                TypeFactory t = TypeFactory.defaultInstance();
+                T result = mapper.readValue(res, new TypeReference<T>(){}); //works perfectly in Groovy, but it will only return LinkedHashMap in Java
+                //T result = mapper.readValue(res, responseClass); // Crash and burn when there's Array in JSON
                 callback.onSuccess(result);
             }
         });
