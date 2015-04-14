@@ -7,12 +7,9 @@ package main.java.org.pandawarrior.okHttpWrapper
 class Weather {
 
     private List<LocalWeather> localWeathers = new ArrayList<>();
-
-
     Weather(List<LocalWeather> localWeathers) {
         this.localWeathers = localWeathers
     }
-
     List<LocalWeather> getLocalWeathers() {
         return localWeathers
     }

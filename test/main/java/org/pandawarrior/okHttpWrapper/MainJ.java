@@ -9,12 +9,12 @@ import org.pandawarrior.okHttpWrapper.NetworkCallApi;
 public class MainJ {
     public static void main(String[] args) {
         NetworkCallApi callApi = NetworkCallApi.INSTANCE;
-        String url = "http://tableapp.com/debug/testList";
-        callApi.getData(url, CustomerListJ.class, new ApiCallback() {
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
+        callApi.getData(url, WeatherJ.class, new ApiCallback() {
             @Override
             public <T> void onSuccess(T valueType) {
-                CustomerListJ customerListJ = (CustomerListJ) valueType;
-                System.out.println(customerListJ.toString());
+                WeatherJ weatherJ = (WeatherJ) valueType;
+                System.out.println(weatherJ.toString());
             }
 
             @Override

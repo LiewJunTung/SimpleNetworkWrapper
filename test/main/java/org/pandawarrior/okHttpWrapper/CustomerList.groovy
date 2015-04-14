@@ -19,7 +19,6 @@ public class CustomerList {
         int reservationId
         String customerName
 
-
         @Override
         public String toString() {
             return "Customer{" +
