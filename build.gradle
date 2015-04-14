@@ -5,8 +5,6 @@ version = '0.2.0'
 
 repositories {
     mavenCentral()
-    maven { url "http://oss.sonatype.org/content/repositories/github-releases/" }
-    maven { url "http://clojars.org/repo" }
 }
 
 configurations {

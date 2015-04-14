@@ -1,15 +1,16 @@
 package main.java.org.pandawarrior.okHttpWrapper
 
+import com.google.gson.annotations.SerializedName
+
 
 /**
  * Created by jtliew on 4/14/15.
  */
 class Weather {
 
-    private List<LocalWeather> localWeathers = new ArrayList<>();
-    Weather(List<LocalWeather> localWeathers) {
-        this.localWeathers = localWeathers
-    }
+    @SerializedName("weather")
+    private List<LocalWeather> localWeathers;
+
     List<LocalWeather> getLocalWeathers() {
         return localWeathers
     }
@@ -19,7 +20,6 @@ class Weather {
     }
 
     public class LocalWeather{
-
         int id
         String main
         String description

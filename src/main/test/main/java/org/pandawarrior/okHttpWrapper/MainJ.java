@@ -15,6 +15,7 @@ public class MainJ {
             public <T> void onSuccess(T valueType) {
                 WeatherJ weatherJ = (WeatherJ) valueType;
                 System.out.println(weatherJ.toString());
+                System.exit(0);
             }
 
             @Override

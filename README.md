@@ -80,6 +80,7 @@ String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
 callApi.getData(url, Weather.class, new ApiCallback() {
     @Override
     public <T> void onSuccess(T valueType) {
+        //VERY IMPORTANT STEP, cast result into appropriate class
         Weather weather = (Weather) valueType;
         // Do things
         // In order to manipulate UI items, use this:
@@ -99,5 +100,5 @@ callApi.getData(url, Weather.class, new ApiCallback() {
 });
 ```
 
-### More to come
+### POST, Stop Calls, More to come
 

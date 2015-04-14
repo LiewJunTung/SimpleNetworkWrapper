@@ -10,11 +10,12 @@ class Main {
     public static void main(String[] args) {
         NetworkCallApi callApi = NetworkCallApi.INSTANCE
         String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk"
-        callApi.getData(url, WeatherJ.class, new ApiCallback() {
+        callApi.getData(url, Weather.class, new ApiCallback() {
             @Override
             public <T> void onSuccess(T valueType) {
-                WeatherJ weatherJ = (WeatherJ) valueType
-                println(weatherJ.getLocalWeathers().toString())
+                Weather weather = (Weather) valueType
+                println(weather.getLocalWeathers().toString())
+                System.exit(0)
             }
 
             @Override
