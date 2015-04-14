@@ -1,5 +1,8 @@
 package main.java.org.pandawarrior.okHttpWrapper
 
+import org.pandawarrior.okHttpWrapper.ApiCallback
+import org.pandawarrior.okHttpWrapper.NetworkCallApi
+
 /**
  * Created by jtliew on 4/14/15.
  */
@@ -11,7 +14,7 @@ class Main {
             @Override
             public <T> void onSuccess(T valueType) {
                 CustomerList customerList = (CustomerList) valueType
-                println(customerList.customers)
+                println(customerList.customers.toString())
             }
 
             @Override

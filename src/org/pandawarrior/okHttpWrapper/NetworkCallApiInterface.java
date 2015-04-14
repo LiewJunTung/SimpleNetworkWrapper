@@ -1,4 +1,4 @@
-package main.java.org.pandawarrior.okHttpWrapper;
+package org.pandawarrior.okHttpWrapper;
 
 import java.io.IOException;
 

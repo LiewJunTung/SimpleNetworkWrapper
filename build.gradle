@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+repositories {
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+dependencies {
+    //compile localGroovy()
+    compile 'com.squareup.okhttp:okhttp:2.3.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+}
+
+

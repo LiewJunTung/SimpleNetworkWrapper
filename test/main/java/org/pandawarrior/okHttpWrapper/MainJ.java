@@ -1,6 +1,7 @@
 package main.java.org.pandawarrior.okHttpWrapper;
 
-import java.util.LinkedHashMap;
+import org.pandawarrior.okHttpWrapper.ApiCallback;
+import org.pandawarrior.okHttpWrapper.NetworkCallApi;
 
 /**
  * Created by jtliew on 4/14/15.
