@@ -1,13 +1,17 @@
 apply plugin: 'java'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+version = '0.2.0'
 
 repositories {
     mavenCentral()
+    maven { url "http://oss.sonatype.org/content/repositories/github-releases/" }
+    maven { url "http://clojars.org/repo" }
 }
 
-repositories {
-    flatDir {
-        dirs 'lib'
-    }
+configurations {
+    provided
+    compile.extendsFrom provided
 }
 
 dependencies {
@@ -16,4 +20,15 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
 }
 
-
+jar {
+    dependsOn configurations.runtime
+    from {
+        (configurations.runtime - configurations.provided).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+}
