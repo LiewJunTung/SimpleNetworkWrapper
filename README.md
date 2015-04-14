@@ -6,12 +6,12 @@ include it into your project to build it or [Get the Jar file](https://github.co
 
 ## Usage 
 ### Get
-1. Instantiate the NetworkCallApi
+1.Instantiate the NetworkCallApi
 ```java
 NetworkCallApi callApi = NetworkCallApi.INSTANCE;
 ```
 
-2. Create a pojo class for Json to convert into.
+2.Create a pojo class for Json to convert into.
 ```java
 //
 public class Weather {
@@ -31,7 +31,7 @@ public class Weather {
 }
 ```
 
-3. Call the API
+3.Call the API
 ```java
 String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
 callApi.getData(url, Weather.class, new ApiCallback() {
@@ -48,8 +48,8 @@ callApi.getData(url, Weather.class, new ApiCallback() {
 });
 ```
 ### Get Android
-1. Same with Step 1 above
-2. Same with Step 2 above
+1.Same with Step 1 above
+2.Same with Step 2 above
 3. 
 ```java
 String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
