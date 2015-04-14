@@ -47,6 +47,29 @@ callApi.getData(url, Weather.class, new ApiCallback() {
     }
 });
 ```
+Overall, it looks like this
+```java
+public class TestOkHttpWrapper {
+    public static void main(String[] args) {
+        NetworkCallApi callApi = NetworkCallApi.INSTANCE;
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
+        //getData(String url, Class<T> class, ApiCallback)
+        callApi.getData(url, Weather.class, new ApiCallback() {
+            @Override
+            public <T> void onSuccess(T valueType) {
+                Weather weather = (Weather) valueType;
+                System.out.println(weather.toString());
+            }
+
+            @Override
+            public void onFail(Exception e) {
+
+            }
+        });
+    }
+}
+```
+
 ### Get Android
 1.Same with Step 1 above
 2.Same with Step 2 above
@@ -74,28 +97,6 @@ callApi.getData(url, Weather.class, new ApiCallback() {
 
     }
 });
-```
-Overall, it looks like this
-```java
-public class TestOkHttpWrapper {
-    public static void main(String[] args) {
-        NetworkCallApi callApi = NetworkCallApi.INSTANCE;
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
-        //getData(String url, Class<T> class, ApiCallback)
-        callApi.getData(url, Weather.class, new ApiCallback() {
-            @Override
-            public <T> void onSuccess(T valueType) {
-                Weather weather = (Weather) valueType;
-                System.out.println(weather.toString());
-            }
-
-            @Override
-            public void onFail(Exception e) {
-
-            }
-        });
-    }
-}
 ```
 
 ### More to come
