@@ -1,4 +1,4 @@
-package main.java.org.pandawarrior.okHttpWrapper;
+package java.org.pandawarrior.okHttpWrapper;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class CustomerListJ {
         this.customers = customers;
     }
 
-    public class Customer{
+    public class Customer {
         private int customerId;
         private int customerAge;
         private String customerName;

@@ -5,5 +5,6 @@ package org.pandawarrior.okHttpWrapper;
  */
 public interface ApiCallback {
     <T> void onSuccess(T valueType);
+
     void onFail(Exception e);
 }

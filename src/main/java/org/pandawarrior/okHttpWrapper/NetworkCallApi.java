@@ -1,8 +1,9 @@
 package org.pandawarrior.okHttpWrapper;
 
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.jr.ob.JSON;
 import com.squareup.okhttp.*;
+
 import java.io.IOException;
 import java.io.Reader;
 
@@ -16,7 +17,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     public static final String DEFAULT_TAG = "DEFAULT";
     private final OkHttpClient client = new OkHttpClient();
     //private final ObjectMapper mapper = new ObjectMapper();
-    private final Gson gson = new Gson();
+    //private final Gson gson = new Gson();
 
     @Override
     public <T> void getData(String url, String tag, final Class<T> responseClass, final ApiCallback callback) {
@@ -38,9 +39,10 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
         doNetworkCall(client, request, responseClass, callback);
     }
 
+
     @Override
     public <T> void postData(String url, String tag, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException {
-        String jsonRequest = gson.toJson(postData);
+        String jsonRequest = JSON.std.asString(postData);
         Request request = new Request.Builder()
                 .url(url)
                 .tag(DEFAULT_TAG)
@@ -52,7 +54,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
 
     @Override
     public <T> void postData(String url, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException {
-        String jsonRequest = gson.toJson(postData);
+        String jsonRequest = JSON.std.asString(postData);
         Request request = new Request.Builder()
                 .url(url)
                 .tag(DEFAULT_TAG)
@@ -74,13 +76,17 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
 
             @Override
             public void onResponse(Response response) throws IOException {
+                //String res = "{\"weather\":[{\"id\":12,\"main\":\"Clear\",\"description\":\"Clear\",\"icon\":\"113\"}]}";
                 Reader res = response.body().charStream();
-
-                T result = gson.fromJson(res, responseClass);
+                //String res = "{\"name\":[{\"first\":\"Bob\",\"last\":\"Burger\"}],\"x\":13, \"rawr\": 12}";
+                T result = JSON.std.beanFrom(responseClass, res);
+                // T result = gson.fromJson(res, responseClass);
+                // System.out.print(result);
                 callback.onSuccess(result);
             }
         });
     }
+
 
     public void stopRequest() {
         client.cancel(DEFAULT_TAG);
