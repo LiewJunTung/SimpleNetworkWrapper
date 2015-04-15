@@ -1,5 +1,5 @@
 # okHttpWrapper
-An okHttp wrapper that allows handling of web request and conversion to Java object witout much code.
+An okHttp wrapper that allows handling of web request and conversion to Java object without using many lines of code with GSON.
 
 ## Installation
 include it into your project to build it or [Get the Jar file](https://github.com/pandawarrior91/okhttp_wrapper/releases)

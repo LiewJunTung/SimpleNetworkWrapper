@@ -77,7 +77,6 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
                 Reader res = response.body().charStream();
 
                 T result = gson.fromJson(res, responseClass);
-
                 callback.onSuccess(result);
             }
         });
