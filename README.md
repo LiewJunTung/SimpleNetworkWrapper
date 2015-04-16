@@ -11,7 +11,7 @@ include it into your project to build it or [Get the Jar file](https://github.co
 NetworkCallApi callApi = NetworkCallApi.INSTANCE;
 ```
 
-2.Create a pojo class for Json to convert into.
+2.Create a bean for Json to convert into.
 ```java
 //
 public class Weather {
