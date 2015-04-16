@@ -6,7 +6,6 @@ import com.squareup.okhttp.*;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jtliew on 4/13/15.
@@ -39,26 +38,36 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
 
 
     @Override
-    public <T> void postData(String url, String tag, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException {
-        String jsonRequest = JSON.std.asString(postData);
-        Request request = new Request.Builder()
-                .url(url)
-                .tag(DEFAULT_TAG)
-                .tag(tag)
-                .post(RequestBody.create(MEDIA_TYPE_JSON, jsonRequest))
-                .build();
-        doNetworkCall(client, request, responseClass, callback);
+    public <T> void postData(String url, String tag, Object postBean, Class<T> responseClass, ApiCallback callback) {
+        String jsonRequest = null;
+        try {
+            jsonRequest = JSON.std.asString(postBean);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .tag(DEFAULT_TAG)
+                    .tag(tag)
+                    .post(RequestBody.create(MEDIA_TYPE_JSON, jsonRequest))
+                    .build();
+            doNetworkCall(client, request, responseClass, callback);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public <T> void postData(String url, Object postData, Class<T> responseClass, ApiCallback callback) throws IOException {
-        String jsonRequest = JSON.std.asString(postData);
-        Request request = new Request.Builder()
-                .url(url)
-                .tag(DEFAULT_TAG)
-                .post(RequestBody.create(MEDIA_TYPE_JSON, jsonRequest))
-                .build();
-        doNetworkCall(client, request, responseClass, callback);
+    public <T> void postData(String url, Object postBean, Class<T> responseClass, ApiCallback callback) {
+        String jsonRequest = null;
+        try {
+            jsonRequest = JSON.std.asString(postBean);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .tag(DEFAULT_TAG)
+                    .post(RequestBody.create(MEDIA_TYPE_JSON, jsonRequest))
+                    .build();
+            doNetworkCall(client, request, responseClass, callback);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -73,10 +82,15 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
             }
 
             @Override
-            public void onResponse(Response response) throws IOException {
-                Reader res = response.body().charStream();
-                T result = JSON.std.beanFrom(responseClass, res);
-                callback.onSuccess(result);
+            public void onResponse(Response response) {
+                Reader res = null;
+                try {
+                    res = response.body().charStream();
+                    T result = JSON.std.beanFrom(responseClass, res);
+                    callback.onSuccess(result);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
