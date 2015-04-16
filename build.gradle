@@ -15,7 +15,7 @@ configurations {
 dependencies {
     //compile localGroovy()
     compile 'com.squareup.okhttp:okhttp:2.3.0'
-    compile 'com.fasterxml.jackson.jr:jackson-jr-all:2.5.2'
+    compile 'com.fasterxml.jackson.jr:jackson-jr-objects:2.5.2'
 }
 
 jar {

@@ -1,4 +1,4 @@
-package java.org.pandawarrior.okHttpWrapper;
+package main.org.pandawarrior.okHttpWrapper;
 
 import org.pandawarrior.okHttpWrapper.ApiCallback;
 import org.pandawarrior.okHttpWrapper.NetworkCallApi;

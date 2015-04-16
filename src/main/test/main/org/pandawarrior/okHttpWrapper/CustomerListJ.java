@@ -1,4 +1,4 @@
-package java.org.pandawarrior.okHttpWrapper;
+package main.org.pandawarrior.okHttpWrapper;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
-package java.org.pandawarrior.okHttpWrapper;
+package main.org.pandawarrior.okHttpWrapper;
 
-import java.org.pandawarrior.okHttpWrapper.LocalWeather;
 import java.util.List;
 
 /**
