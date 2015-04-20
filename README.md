@@ -1,3 +1,5 @@
+I just found out there is a project that is already doing what I am doing. That is [Retrofit](http://square.github.io/retrofit/). Why reinvent the wheel when people already doing it successfully? ;) But this can be a simple concept of how we can reduce boilerplate codes with the T... I mean [Generics](https://docs.oracle.com/javase/tutorial/extra/generics/)
+
 # okHttpWrapper
 An okHttp wrapper that allows handling of web request and conversion to Java object without using many lines of code with ~~GSON~~ Jackson-jr library.
 
