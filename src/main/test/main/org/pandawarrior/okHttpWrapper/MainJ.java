@@ -13,13 +13,10 @@ public class MainJ {
         NetworkCallApi callApi = NetworkCallApi.INSTANCE;
         String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
 
-
-        callApi.getData(url, Weather.class, new ApiCallback() {
+        callApi.getData(url, "QUEEE", Weather.class, new ApiCallback<Weather>() {
             @Override
-            public <T> void onSuccess(T valueType) {
-                Weather weather = (Weather) valueType;
-                System.out.println(weather.getWeather().get(0).getDescription());
-                System.exit(0);
+            public void onSuccess(Weather weather) {
+                System.out.println(weather.toString());
             }
 
             @Override
@@ -29,44 +26,4 @@ public class MainJ {
         });
     }
 
-    static class BB {
-        private int x;
-        private List<Name> name;
-
-        public int getX() {
-            return x;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        public List<Name> getName() {
-            return name;
-        }
-
-        public void setName(List<Name> n) {
-            name = n;
-        }
-    }
-
-    static class Name {
-        protected String first, last;
-
-        public String getFirst() {
-            return first;
-        }
-
-        public void setFirst(String n) {
-            first = n;
-        }
-
-        public String getLast() {
-            return last;
-        }
-
-        public void setLast(String n) {
-            last = n;
-        }
-    }
 }

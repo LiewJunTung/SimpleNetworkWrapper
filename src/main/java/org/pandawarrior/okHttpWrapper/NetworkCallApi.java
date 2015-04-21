@@ -17,8 +17,9 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     public static final String DEFAULT_TAG = "DEFAULT";
     private final OkHttpClient client = new OkHttpClient();
 
+
     @Override
-    public <T> void getData(String url, String tag, final Class<T> responseClass, final ApiCallback callback) {
+    public <T> void getData(String url, String tag, final Class<T> responseClass, final ApiCallback<T> callback) {
         Request request = new Request.Builder()
                 .url(url)
                 .tag(DEFAULT_TAG)
@@ -28,7 +29,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     }
 
     @Override
-    public <T> void getData(String url, final Class<T> responseClass, final ApiCallback callback) {
+    public <T> void getData(String url, final Class<T> responseClass, final ApiCallback<T> callback) {
         Request request = new Request.Builder()
                 .url(url)
                 .tag(DEFAULT_TAG)
@@ -38,7 +39,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
 
 
     @Override
-    public <T> void postData(String url, String tag, Object postBean, Class<T> responseClass, ApiCallback callback) {
+    public <T> void postData(String url, String tag, Object postBean, Class<T> responseClass, ApiCallback<T> callback) {
         String jsonRequest = null;
         try {
             jsonRequest = JSON.std.asString(postBean);
@@ -55,7 +56,7 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     }
 
     @Override
-    public <T> void postData(String url, Object postBean, Class<T> responseClass, ApiCallback callback) {
+    public <T> void postData(String url, Object postBean, Class<T> responseClass, ApiCallback<T> callback) {
         String jsonRequest = null;
         try {
             jsonRequest = JSON.std.asString(postBean);
@@ -98,9 +99,11 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
 
     public void stopRequest() {
         client.cancel(DEFAULT_TAG);
+        System.out.println("Stopping request.");
     }
 
     public void stopRequest(String tag) {
         client.cancel(tag);
+        System.out.println("Stopping " + tag + "request.");
     }
 }

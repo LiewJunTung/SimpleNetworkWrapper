@@ -1,7 +1,7 @@
 apply plugin: 'java'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
-version = '0.2.0'
+version = '0.3.0'
 
 repositories {
     mavenCentral()
@@ -19,15 +19,6 @@ dependencies {
 }
 
 jar {
-    dependsOn configurations.runtime
-    from {
-        (configurations.runtime - configurations.provided).collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    } {
-        exclude "META-INF/*.SF"
-        exclude "META-INF/*.DSA"
-        exclude "META-INF/*.RSA"
-    }
+    from configurations.compile.collect { zipTree it }
 }
 
