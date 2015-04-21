@@ -1,5 +1,3 @@
-I just found out there is a project that is already doing what I am doing. That is [Retrofit](http://square.github.io/retrofit/). Why reinvent the wheel when people already doing it successfully? ;) But this can be a simple concept of how we can reduce boilerplate codes with the T... I mean [Generics](https://docs.oracle.com/javase/tutorial/extra/generics/)
-
 # okHttpWrapper
 An okHttp wrapper that allows handling of web request and conversion to Java object without using many lines of code with ~~GSON~~ Jackson-jr library.
 
@@ -55,10 +53,10 @@ public class TestOkHttpWrapper {
     public static void main(String[] args) {
         NetworkCallApi callApi = NetworkCallApi.INSTANCE;
         String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
-        //getData(String url, Class<T> class, ApiCallback)
-        callApi.getData(url, Weather.class, new ApiCallback() {
+        //getData(String url, Class<T> class, ApiCallback<T>)
+        callApi.getData(url, Weather.class, new ApiCallback<Weather>() {
             @Override
-            public <T> void onSuccess(T valueType) {
+            public void onSuccess(Weather valueType) {
                 Weather weather = (Weather) valueType;
                 System.out.println(weather.toString());
             }
@@ -78,12 +76,10 @@ public class TestOkHttpWrapper {
 3. 
 ```java
 String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk";
-//getData(String url, Class<T> class, ApiCallback)
-callApi.getData(url, Weather.class, new ApiCallback() {
+//getData(String url, Class<T> class, ApiCallback<Weather>)
+callApi.getData(url, Weather.class, new ApiCallback<Weather>() {
     @Override
-    public <T> void onSuccess(T valueType) {
-        //VERY IMPORTANT STEP, cast result into appropriate class
-        Weather weather = (Weather) valueType;
+    public <T> void onSuccess(Weather weather) {
         // Do things
         // In order to manipulate UI items, use this:
         runOnUiThread(new Runnable() {
