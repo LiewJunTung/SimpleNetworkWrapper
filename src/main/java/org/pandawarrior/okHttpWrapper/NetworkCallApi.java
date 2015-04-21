@@ -10,7 +10,7 @@ import java.io.Reader;
 /**
  * Created by jtliew on 4/13/15.
  */
-public enum NetworkCallApi implements NetworkCallApiInterface {
+public enum NetworkCallApi {
     INSTANCE;
     public static final MediaType MEDIA_TYPE_JSON
             = MediaType.parse("application/json; charset=utf-8");
@@ -18,7 +18,6 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     private final OkHttpClient client = new OkHttpClient();
 
 
-    @Override
     public <T> void getData(String url, String tag, final Class<T> responseClass, final ApiCallback<T> callback) {
         Request request = new Request.Builder()
                 .url(url)
@@ -28,7 +27,6 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
         doNetworkCall(client, request, responseClass, callback);
     }
 
-    @Override
     public <T> void getData(String url, final Class<T> responseClass, final ApiCallback<T> callback) {
         Request request = new Request.Builder()
                 .url(url)
@@ -38,7 +36,6 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
     }
 
 
-    @Override
     public <T> void postData(String url, String tag, Object postBean, Class<T> responseClass, ApiCallback<T> callback) {
         String jsonRequest = null;
         try {
@@ -55,7 +52,6 @@ public enum NetworkCallApi implements NetworkCallApiInterface {
         }
     }
 
-    @Override
     public <T> void postData(String url, Object postBean, Class<T> responseClass, ApiCallback<T> callback) {
         String jsonRequest = null;
         try {

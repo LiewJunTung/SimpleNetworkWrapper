@@ -1,4 +1,4 @@
-package main.org.pandawarrior.okHttpWrapper;
+package org.pandawarrior.okHttpWrapper;
 
 /**
  * Created by jtliew on 4/16/15.
