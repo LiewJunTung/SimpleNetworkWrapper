@@ -1,4 +1,4 @@
-# okHttpWrapper
+# Simple Network Wrapper
 An okHttp wrapper that allows handling of web request and conversion to Java object without using many lines of code with ~~GSON~~ Jackson-jr library.
 
 ## Installation
